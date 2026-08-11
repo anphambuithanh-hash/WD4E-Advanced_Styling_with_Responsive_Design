@@ -1,5 +1,11 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     background-color: #dedede;
+    margin: 0;
+    padding: 20px;
 }
 
 h1 {
@@ -18,53 +24,49 @@ p {
     font-size: 25px;
     font-family: Arial, sans-serif;
     text-align: center;
+    margin-top: 10px;
 }
 
-/* Ensure padding and borders don't push divs onto new lines */
-* {
-    box-sizing: border-box;
+
+.container {
+    text-align: center;
 }
 
-img {
-    width: 100%;
-}
-
+/* Default Mobile Layout (Under 772px): 1 card per row */
 div {
     display: inline-block;
-    width: 24%;
-    margin: 5px;
-    padding: 2px;
-    vertical-align: top; /* Keeps divs aligned side-by-side along the top edge */
+    width: 90vw; 
+    margin: 10px;
+    padding: 5px;
+    vertical-align: top;
 }
 
+
 div img {
-    width: 100%; /* Allows image to scale naturally inside the div */
-    max-width: 100%; /* Keeps image contained inside the div */
+    width: 100%;
     height: auto;
     display: block;
     margin: auto;
+    border: 5px solid blue;
+    border-radius: 25px;
 }
 
 
-/* ===================================================
-   ASSIGNMENT MEDIA QUERIES
-   =================================================== */
-
-/* Media Query #1: Triggers at 772px */
+/* Tablet View (772px and up): 2 cards per row (Screenshot 1) */
 @media screen and (min-width: 772px) {
     div {
-        width: 45vw; /* Sets div layout to 45% of viewport width */
+        width: 45vw;
     }
 
     div img {
-        max-height: 30vh; /* Limits image height to 30% of viewport height */
-        width: auto; /* Preserves aspect ratio when constrained by height */
+        max-height: 30vh;
+        width: auto;
     }
 }
 
-/* Media Query #2: Triggers at 998px */
+/* Large Screen View (998px and up): 3 cards per row (Screenshot 3) */
 @media screen and (min-width: 998px) {
     div {
-        width: 30vw; /* Sets div layout to 30% of viewport width */
+        width: 30vw;
     }
 }
