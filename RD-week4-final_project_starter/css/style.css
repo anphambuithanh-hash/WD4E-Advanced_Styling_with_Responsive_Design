@@ -1,4 +1,3 @@
-
 html {
   scroll-behavior: smooth;
 }
@@ -34,16 +33,13 @@ a:focus {
   color: #5080BF;
 }
 
-
+/* Mobile View: 1-column grid with 10px gap */
 .grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 10px;
 }
 
-/* ==========================================
-   MOBILE-FIRST DEFAULT STYLES (1-Column Grid)
-   ========================================== */
 figure {
   margin: 0;
   padding: 10px;
@@ -60,19 +56,22 @@ figure {
 
 figure img {
   width: 100%;
-  height: auto; /* Preserves natural image aspect ratio without distortion */
+  height: auto;
   display: block;
 }
 
-/* ==========================================
-   TABLET VIEW (Min-width: 772px)
-   ========================================== */
+figcaption {
+  margin-top: 8px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Tablet View: Trigger at 772px */
 @media (min-width: 772px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  /* Force square container to make border-radius: 50% a perfect circle */
   figure {
     border-radius: 50%;
     aspect-ratio: 1 / 1; 
@@ -80,7 +79,7 @@ figure img {
 
   figure img {
     height: 100%;
-    object-fit: cover; /* Center-crops image inside circle without stretching */
+    object-fit: cover;
   }
 
   figure:last-child {
@@ -88,11 +87,12 @@ figure img {
   }
 }
 
-/* ==========================================
-   LARGE SCREEN VIEW (Min-width: 992px)
-   ========================================== */
+/* Large Screen View: Trigger at 992px */
 @media (min-width: 992px) {
-  /* Reset tablet circle rules back to standard figures */
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   figure {
     border-radius: 0;
     aspect-ratio: auto;
@@ -100,19 +100,45 @@ figure img {
 
   figure img {
     height: auto;
-    object-fit: fill; /* Restores standard image layout */
+    object-fit: fill;
   }
 
-  /* Reset tablet's last-child rule */
   figure:last-child {
     grid-column: auto;
   }
 
-  /* Every 3rd figure spans 2 columns */
   figure:nth-child(3n) {
     grid-column: span 2;
   }
 }
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Accessibility: Dark Mode */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #010326; 
+    color: #F2EFC2; 
+  }
+
+  h1, p {
+    color: #F2EFC2;
+  }
+
+  a {
+    color: #5080BF; 
+  }
+
+  a:hover,
+  a:focus {
+    color: #F2EFC2;
+  }
+
   figure {
     background-color: #022873; 
     color: #F2EFC2; 
