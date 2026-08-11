@@ -41,6 +41,9 @@ a:focus {
   gap: 10px;
 }
 
+/* ==========================================
+   MOBILE-FIRST DEFAULT STYLES (1-Column Grid)
+   ========================================== */
 figure {
   margin: 0;
   padding: 10px;
@@ -55,29 +58,29 @@ figure {
   justify-content: center;
 }
 
-
 figure img {
-  width: auto;
-  height: auto;
-  object-fit: none;
+  width: 100%;
+  height: auto; /* Preserves natural image aspect ratio without distortion */
   display: block;
 }
 
-figcaption {
-  margin-top: 8px;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-
-
+/* ==========================================
+   TABLET VIEW (Min-width: 772px)
+   ========================================== */
 @media (min-width: 772px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  /* Force square container to make border-radius: 50% a perfect circle */
   figure {
     border-radius: 50%;
+    aspect-ratio: 1 / 1; 
+  }
+
+  figure img {
+    height: 100%;
+    object-fit: cover; /* Center-crops image inside circle without stretching */
   }
 
   figure:last-child {
@@ -85,56 +88,31 @@ figcaption {
   }
 }
 
-
-
+/* ==========================================
+   LARGE SCREEN VIEW (Min-width: 992px)
+   ========================================== */
 @media (min-width: 992px) {
+  /* Reset tablet circle rules back to standard figures */
   figure {
     border-radius: 0;
+    aspect-ratio: auto;
   }
 
- 
+  figure img {
+    height: auto;
+    object-fit: fill; /* Restores standard image layout */
+  }
+
+  /* Reset tablet's last-child rule */
   figure:last-child {
     grid-column: auto;
   }
 
-
+  /* Every 3rd figure spans 2 columns */
   figure:nth-child(3n) {
     grid-column: span 2;
   }
 }
-
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-}
-
-
-
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #010326; 
-    color: #F2EFC2; 
-  }
-
-  h1 {
-    color: #F2EFC2;
-  }
-
-  p {
-    color: #F2EFC2;
-  }
-
-  a {
-    color: #0378A6; 
-  }
-
-  a:hover,
-  a:focus {
-    color: #F2EFC2;
-  }
-
   figure {
     background-color: #022873; 
     color: #F2EFC2; 
